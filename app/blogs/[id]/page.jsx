@@ -130,7 +130,7 @@ const BlogDetailPage = ({ params }) => {
           <div className="flex flex-col items-center gap-4">
             <Image 
               className='rounded-full border-4 border-white shadow-lg' 
-              src={blog.authorImg || 'assets.profile_icon'} 
+              src={'assets.profile_icon'} 
               width={60} 
               height={60} 
               alt={`${blog.author} profile picture`}
