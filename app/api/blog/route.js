@@ -4,20 +4,12 @@ import { NextResponse } from "next/server";
 import { writeFile, unlink } from 'fs/promises';
 import path from 'path';
 
-// Initialize database connection
-const initDB = async () => {
-  try {
-    await ConnectDB();
-  } catch (error) {
-    console.error("Database initialization error:", error);
-  }
-};
-
-initDB();
-
 // API Endpoint to get all blogs or a specific blog
 export async function GET(request) {
   try {
+    // Ensure database connection
+    await ConnectDB();
+    
     const { searchParams } = new URL(request.url);
     const blogId = searchParams.get("id");
     
@@ -46,6 +38,9 @@ export async function GET(request) {
 // API Endpoint For Uploading Blogs
 export async function POST(request) {
   try {
+    // Ensure database connection
+    await ConnectDB();
+    
     const formData = await request.formData();
     const timestamp = Date.now();
 
@@ -102,6 +97,9 @@ export async function POST(request) {
 // API Endpoint to delete Blog
 export async function DELETE(request) {
   try {
+    // Ensure database connection
+    await ConnectDB();
+    
     const { searchParams } = new URL(request.url);
     const id = searchParams.get('id');
     

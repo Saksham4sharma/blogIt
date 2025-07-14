@@ -30,8 +30,8 @@ const Footer = () => {
     <footer className='flex justify-around flex-col gap-4 sm:gap-0 sm:flex-row bg-black py-8 items-center'>
       <div className="flex flex-col items-center sm:items-start">
         <Image 
-          src={assets.logo_light} 
-          alt='Blog Logo' 
+          src={assets.blogit_logo} 
+          alt='BlogIt Logo' 
           width={120} 
           height={40}
           className="mb-2"
@@ -40,7 +40,7 @@ const Footer = () => {
       
       <div className="text-center">
         <p className='text-sm text-gray-300'>
-          © {currentYear} Blogger. All rights reserved.
+          © {currentYear} BlogIt. All rights reserved.
         </p>
       </div>
       

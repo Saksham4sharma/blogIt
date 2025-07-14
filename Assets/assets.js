@@ -19,6 +19,7 @@ import googleplus_icon from './googleplus_icon.png';
 import twitter_icon from './twitter_icon.png';
 import profile_icon from './profile_icon.png';
 import logo from './logo.png';
+import blogit_logo from './blogit-logo-transparent.png';
 import arrow from './arrow.png';
 import logo_light from './logo_light.png';
 import blog_icon from './blog_icon.png';
@@ -32,6 +33,7 @@ export const assets = {
     twitter_icon,
     profile_icon,
     logo,
+    blogit_logo,
     arrow,
     logo_light,
     blog_icon,

@@ -2,20 +2,12 @@ import { ConnectDB } from "@/lib/config/db";
 import EmailModel from "@/lib/models/EmailModel";
 import { NextResponse } from "next/server";
 
-// Initialize database connection
-const initDB = async () => {
-    try {
-        await ConnectDB();
-    } catch (error) {
-        console.error("Database initialization error:", error);
-    }
-};
-
-initDB();
-
 // Subscribe email endpoint
 export async function POST(request) {
     try {
+        // Ensure database connection
+        await ConnectDB();
+        
         const formData = await request.formData();
         const email = formData.get('email')?.toString();
 
@@ -63,6 +55,9 @@ export async function POST(request) {
 // Get all subscribed emails
 export async function GET() {
     try {
+        // Ensure database connection
+        await ConnectDB();
+        
         const emails = await EmailModel.find({}).sort({ date: -1 });
         return NextResponse.json({ success: true, emails });
     } catch (error) {
@@ -77,6 +72,8 @@ export async function GET() {
 // Delete email subscription
 export async function DELETE(request) {
     try {
+        // Ensure database connection
+        await ConnectDB();
         const { searchParams } = new URL(request.url);
         const id = searchParams.get("id");
 
