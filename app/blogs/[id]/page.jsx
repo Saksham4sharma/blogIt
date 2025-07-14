@@ -108,7 +108,7 @@ const BlogDetailPage = ({ params }) => {
         <div className='flex justify-between items-center'>
           <Link href='/' className="hover:opacity-80 transition-opacity">
             <Image 
-              src={assets.logo} 
+              src={assets.blogit_logo} 
               width={180} 
               alt='Blog Logo' 
               className='w-[130px] sm:w-auto' 
