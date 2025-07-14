@@ -151,7 +151,7 @@ const BlogDetailPage = ({ params }) => {
       {/* Main Content */}
       <main className='mx-5 max-w-[800px] md:mx-auto mt-[-100px] mb-10'>
         <Image 
-          className='border-4 border-white shadow-xl rounded-lg w-full' 
+          className='border-4 border-white shadow-xl rounded-lg w-full max-h-[500px] object-cover' 
           src={blog.image} 
           width={800} 
           height={480} 
