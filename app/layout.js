@@ -4,7 +4,7 @@ import './globals.css'
 const outfit = Outfit({ subsets: ['latin'] ,weight:["400","500","600","700"] })
 
 export const metadata = {
-  title: 'BlogIt - Modern Blog Platform',
+  title: 'BlogIt ',
   description: 'BlogIt - A modern and responsive blog platform for sharing your thoughts, stories, and insights with the world.',
 }
 
