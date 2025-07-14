@@ -115,10 +115,12 @@ const BlogDetailPage = ({ params }) => {
               priority
             />
           </Link>
-          <button className='flex items-center gap-2 font-medium py-1 px-3 sm:py-3 sm:px-6 border border-black shadow-[-7px_7px_0px_#000000] hover:shadow-[-5px_5px_0px_#000000] transition-all duration-200'>
-            Get started 
+          <Link href="/admin">
+            <button  className='flex items-center gap-2 font-medium py-1 px-3 sm:py-3 sm:px-6 border border-black shadow-[-7px_7px_0px_#000000] hover:shadow-[-5px_5px_0px_#000000] transition-all duration-200'>
+           Admin Page
             <Image src={assets.arrow} alt='Arrow icon' width={16} height={16} />
           </button>
+          </Link>
         </div>
         
         {/* Blog Header */}
