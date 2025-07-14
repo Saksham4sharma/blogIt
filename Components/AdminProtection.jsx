@@ -1,6 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { isAuthenticated, logout } from '@/lib/auth';
+import { isAuthenticated } from '@/lib/auth';
 import AdminLogin from '@/Components/AdminLogin';
 
 const AdminProtection = ({ children }) => {
@@ -20,11 +20,6 @@ const AdminProtection = ({ children }) => {
 
   const handleLogin = () => {
     setIsAuth(true);
-  };
-
-  const handleLogout = () => {
-    logout();
-    setIsAuth(false);
   };
 
   if (isLoading) {

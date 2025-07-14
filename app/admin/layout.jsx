@@ -7,7 +7,7 @@ import Image from "next/image";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-export default function AdminLayout({ children, onLogout }) {
+export default function AdminLayout({ children }) {
     const { handleLogout } = useAdminAuth();
 
     return (
