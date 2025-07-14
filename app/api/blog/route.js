@@ -1,8 +1,14 @@
 import { ConnectDB } from "@/lib/config/db";
 import BlogModel from "@/lib/models/BlogModel";
 import { NextResponse } from "next/server";
-import { writeFile, unlink } from 'fs/promises';
-import path from 'path';
+import { v2 as cloudinary } from 'cloudinary';
+
+// Configure Cloudinary
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 // API Endpoint to get all blogs or a specific blog
 export async function GET(request) {
@@ -53,13 +59,25 @@ export async function POST(request) {
       );
     }
 
+    // Upload image to Cloudinary
     const imageByteData = await image.arrayBuffer();
     const buffer = Buffer.from(imageByteData);
-    const fileName = `${timestamp}_${image.name}`;
-    const filePath = path.join(process.cwd(), 'public', fileName);
     
-    await writeFile(filePath, buffer);
-    const imgUrl = `/${fileName}`;
+    const uploadResponse = await new Promise((resolve, reject) => {
+      cloudinary.uploader.upload_stream(
+        {
+          folder: 'blogit-uploads',
+          public_id: `blog_${timestamp}_${image.name.split('.')[0]}`,
+          resource_type: 'auto'
+        },
+        (error, result) => {
+          if (error) reject(error);
+          else resolve(result);
+        }
+      ).end(buffer);
+    });
+
+    const imgUrl = uploadResponse.secure_url;
 
     const blogData = {
       title: formData.get('title')?.toString() || '',
@@ -119,13 +137,14 @@ export async function DELETE(request) {
       );
     }
 
-    // Delete the image file
+    // Delete the image from Cloudinary
     if (blog.image) {
       try {
-        const imagePath = path.join(process.cwd(), 'public', blog.image);
-        await unlink(imagePath);
+        // Extract public_id from Cloudinary URL
+        const publicId = blog.image.split('/').slice(-2).join('/').split('.')[0];
+        await cloudinary.uploader.destroy(publicId);
       } catch (error) {
-        console.warn("Failed to delete image file:", error.message);
+        console.warn("Failed to delete image from Cloudinary:", error.message);
       }
     }
 
