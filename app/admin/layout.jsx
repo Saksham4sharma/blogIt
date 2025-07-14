@@ -12,7 +12,7 @@ export default function AdminLayout({ children }) {
 
     return (
         <AdminProtection>
-            <div className="flex min-h-screen bg-gray-50">
+            <div className="flex min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
                 <ToastContainer 
                     theme="dark"
                     position="top-right"
@@ -29,17 +29,17 @@ export default function AdminLayout({ children }) {
                 <Sidebar />
                 
                 <div className="flex flex-col w-full">
-                    <header className="flex items-center justify-between w-full py-4 px-6 bg-white border-b border-gray-200 shadow-sm">
+                    <header className="flex items-center justify-between w-full py-4 px-6 bg-white border-b border-gray-200 shadow-lg backdrop-blur-sm bg-white/95">
                         <div className="flex items-center gap-4">
                             <Image 
                                 src={assets.blogit_logo} 
                                 width={120} 
                                 alt='BlogIt Admin' 
-                                className='w-[100px] sm:w-[120px]'
+                                className='w-[100px] sm:w-[120px] hover:scale-105 transition-transform duration-200'
                             />
                             <div>
-                                <h1 className="text-xl font-semibold text-gray-800">Admin Panel</h1>
-                                <p className="text-sm text-gray-500">Manage your BlogIt content</p>
+                                <h1 className="text-xl font-bold text-gray-800 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Admin Panel</h1>
+                                <p className="text-sm text-gray-500 font-medium">Manage your BlogIt content</p>
                             </div>
                         </div>
                         <div className="flex items-center gap-3">
@@ -56,7 +56,7 @@ export default function AdminLayout({ children }) {
                             />
                             <button
                                 onClick={handleLogout}
-                                className="ml-3 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-2 shadow-md hover:shadow-lg"
+                                className="ml-3 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                                 title="Logout from admin panel"
                             >
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -67,8 +67,10 @@ export default function AdminLayout({ children }) {
                         </div>
                     </header>
                     
-                    <main className="flex-1 overflow-auto bg-white">
-                        {children}
+                    <main className="flex-1 overflow-auto bg-gradient-to-br from-white to-gray-50 p-1">
+                        <div className="h-full bg-white rounded-tl-2xl shadow-inner">
+                            {children}
+                        </div>
                     </main>
                 </div>
             </div>

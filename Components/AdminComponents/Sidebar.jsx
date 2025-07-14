@@ -31,30 +31,31 @@ const Sidebar = () => {
     const isActiveLink = (href) => pathname === href;
 
     return (
-        <nav className='flex flex-col bg-slate-100' role="navigation" aria-label="Admin navigation">
+        <nav className='flex flex-col bg-gradient-to-b from-gray-100 to-gray-200 shadow-lg' role="navigation" aria-label="Admin navigation">
             {/* Logo Header */}
-            <div className='px-2 sm:pl-14 py-3 border border-black'>
+            <div className='px-2 sm:pl-14 py-4 border-b-2 border-gray-300 bg-white shadow-sm'>
                 <Link href="/admin" className="block">
                     <Image 
-                        src={assets.logo} 
+                        src={assets.blogit_logo} 
                         width={120} 
-                        alt='Admin Dashboard Logo' 
+                        alt='BlogIt Admin Dashboard Logo' 
                         priority
+                        className="hover:scale-105 transition-transform duration-200"
                     />
                 </Link>
             </div>
 
             {/* Navigation Menu */}
-            <div className='w-28 sm:w-80 h-[100vh] relative py-12 border border-black'>
+            <div className='w-28 sm:w-80 h-[100vh] relative py-12 bg-gradient-to-b from-gray-50 to-gray-100'>
                 <div className='w-[50%] sm:w-[80%] absolute right-0 space-y-4'>
                     {menuItems.map((item) => (
                         <Link 
                             key={item.href}
                             href={item.href} 
-                            className={`flex items-center border border-black gap-3 font-medium px-3 py-3 transition-all duration-200 ${
+                            className={`flex items-center gap-3 font-medium px-4 py-4 mx-2 rounded-lg transition-all duration-300 ${
                                 isActiveLink(item.href)
-                                    ? 'bg-black text-white shadow-[-5px_5px_0px_#333333]'
-                                    : 'bg-white hover:bg-gray-50 shadow-[-5px_5px_0px_#000000] hover:shadow-[-3px_3px_0px_#000000]'
+                                    ? 'bg-blue-600 text-white shadow-lg transform scale-105'
+                                    : 'bg-white hover:bg-blue-50 shadow-md hover:shadow-lg hover:transform hover:scale-102 border border-gray-200'
                             }`}
                             aria-label={item.description}
                             title={item.description}
@@ -64,9 +65,9 @@ const Sidebar = () => {
                                 alt={`${item.label} icon`} 
                                 width={28} 
                                 height={28}
-                                className={isActiveLink(item.href) ? 'brightness-0 invert' : ''}
+                                className={`transition-all duration-200 ${isActiveLink(item.href) ? 'brightness-0 invert' : 'opacity-70'}`}
                             />
-                            <span className='hidden sm:inline-block text-sm'>
+                            <span className='hidden sm:inline-block text-sm font-medium'>
                                 {item.label}
                             </span>
                         </Link>
@@ -75,9 +76,9 @@ const Sidebar = () => {
 
                 {/* Footer Info */}
                 <div className="absolute bottom-8 right-0 w-[50%] sm:w-[80%]">
-                    <div className="text-xs text-gray-500 text-center hidden sm:block">
-                        <p>Admin Panel v1.0</p>
-                        <p className="mt-1">Blog Management System</p>
+                    <div className="text-xs text-gray-600 text-center hidden sm:block bg-white rounded-lg p-3 mx-2 shadow-sm border border-gray-200">
+                        <p className="font-semibold text-blue-600">BlogIt Admin v1.0</p>
+                        <p className="mt-1 text-gray-500">Blog Management System</p>
                     </div>
                 </div>
             </div>
